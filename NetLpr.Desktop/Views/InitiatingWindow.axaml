@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" 
+		d:DesignWidth="400" 
+		d:DesignHeight="400"
+		xmlns:vm="using:NetLpr.Desktop.ViewModels"
+        x:DataType="vm:InitiatingWindowViewModel"
+        x:Class="NetLpr.Desktop.Views.InitiatingWindow"
+        Icon="/Assets/logo.ico"
+		Width="400"
+        Height="400"
+        MinWidth="400"
+        MinHeight="400"
+	    WindowStartupLocation="CenterScreen"
+		Title=""
+		CornerRadius="10"
+		Background="Transparent"
+		BorderThickness="0"
+		BorderBrush="Transparent"
+		SystemDecorations="None">
+		<StackPanel>
+			<PathIcon Width="240"
+					 Height="240"
+					  Foreground="White"
+					  Data="{StaticResource logoIcon}">
+				
+			</PathIcon>
+
+
+			<TextBlock 
+					   FontSize="32"
+					   TextElement.Foreground="White"
+					   Margin="13 15 0 0"
+					   Opacity="1"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Stretch">Net Lpr</TextBlock>
+			<TextBlock 
+					   HorizontalAlignment="Right" 
+					   VerticalAlignment="Bottom"
+					   Text="{Binding Version}"
+					   FontSize="10"
+					   Margin="5 23"
+					   TextElement.Foreground="White">
+			</TextBlock>
+		</StackPanel>
+</Window>

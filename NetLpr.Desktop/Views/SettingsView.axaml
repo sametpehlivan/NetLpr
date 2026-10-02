@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:NetLpr.Desktop.ViewModels"
+             xmlns:views="using:NetLpr.Desktop.Views"
+             xmlns:conv="using:NetLpr.Desktop.Converters"
+             x:Class="NetLpr.Desktop.Views.SettingsView"
+             x:DataType="vm:SettingsViewModel"
+			 
+             mc:Ignorable="d">
+
+
+</UserControl>

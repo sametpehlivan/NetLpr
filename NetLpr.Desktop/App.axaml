@@ -1,0 +1,765 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="NetLpr.Desktop.App"
+             xmlns:local="using:NetLpr.Desktop"
+             RequestedThemeVariant="Default">
+
+	<Application.DataTemplates>
+		<local:ViewLocator/>
+	</Application.DataTemplates>
+
+	<Application.Resources>
+		<ResourceDictionary>
+			<!-- Font -->
+			<FontFamily x:Key="Nunito"> avares://NetLpr.Desktop/Assets/Fonts/Nunito#Nunito </FontFamily>
+			<!-- Accent -->
+			<Color x:Key="AccentColor">#6674F4</Color>
+			<Color x:Key="AccentHoverColor">#7581FF</Color>
+			<Color x:Key="AccentPressedColor">#5663D8</Color>
+			<SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+			<SolidColorBrush x:Key="AccentHoverBrush" Color="{StaticResource AccentHoverColor}"/>
+			<SolidColorBrush x:Key="AccentPressedBrush" Color="{StaticResource AccentPressedColor}"/>
+			<!-- Semantic colors -->
+			<SolidColorBrush x:Key="SuccessBrush" Color="#3DBB78"/>
+			<SolidColorBrush x:Key="SuccessHoverBrush" Color="#49C987"/>
+			<SolidColorBrush x:Key="SuccessPressedBrush" Color="#319B63"/>
+			<SolidColorBrush x:Key="DangerBrush" Color="#E35D68"/>
+			<SolidColorBrush x:Key="DangerHoverBrush" Color="#EF6D77"/>
+			<SolidColorBrush x:Key="DangerPressedBrush" Color="#C94D58"/>
+			<SolidColorBrush x:Key="WarningBrush" Color="#D9A441"/>
+			<SolidColorBrush x:Key="WarningHoverBrush" Color="#E5B252"/>
+			<SolidColorBrush x:Key="WarningPressedBrush" Color="#B98935"/>
+			<!-- Radii -->
+			<CornerRadius x:Key="RadiusSmall">6</CornerRadius>
+			<CornerRadius x:Key="RadiusMedium">9</CornerRadius>
+			<CornerRadius x:Key="RadiusLarge">12</CornerRadius>
+			<!-- Theme resources -->
+			<ResourceDictionary.ThemeDictionaries>
+				<!-- LIGHT -->
+				<ResourceDictionary x:Key="Light">
+					<SolidColorBrush x:Key="AppBackgroundBrush" Color="#F5F5F7"/>
+					<SolidColorBrush x:Key="AppSurfaceBrush" Color="#FFFFFF"/>
+					<SolidColorBrush x:Key="AppSurfaceRaisedBrush" Color="#FAFAFB"/>
+					<SolidColorBrush x:Key="AppSurfaceHoverBrush" Color="#F0F0F3"/>
+					<SolidColorBrush x:Key="AppBorderBrush" Color="#E4E4EA"/>
+					<SolidColorBrush x:Key="AppBorderStrongBrush" Color="#D7D7DF"/>
+					<SolidColorBrush x:Key="AppButtonBrush" Color="#FFFFFF"/>
+					<SolidColorBrush x:Key="AppButtonHoverBrush" Color="#F2F2F5"/>
+					<SolidColorBrush x:Key="AppButtonPressedBrush" Color="#E9E9ED"/>
+					<SolidColorBrush x:Key="TextPrimaryBrush" Color="#18181B"/>
+					<SolidColorBrush x:Key="TextSecondaryBrush" Color="#52525B"/>
+					<SolidColorBrush x:Key="TextMutedBrush" Color="#71717A"/>
+					<SolidColorBrush x:Key="TextDisabledBrush" Color="#A1A1AA"/>
+					<SolidColorBrush x:Key="ErrorBadgeBackgroundBrush" Color="#FEE2E2"/>
+					<SolidColorBrush x:Key="ErrorBadgeForegroundBrush" Color="#B91C1C"/>
+				</ResourceDictionary>
+				<!-- DARK -->
+				<ResourceDictionary x:Key="Dark">
+					<SolidColorBrush x:Key="ErrorBadgeBackgroundBrush" Color="#450A0A"/>
+					<SolidColorBrush x:Key="ErrorBadgeForegroundBrush" Color="#FCA5A5"/>
+					<SolidColorBrush x:Key="AppBackgroundBrush" Color="#050507"/>
+					<SolidColorBrush x:Key="AppSurfaceBrush" Color="#0B0B0F"/>
+					<SolidColorBrush x:Key="AppSurfaceRaisedBrush" Color="#111116"/>
+					<SolidColorBrush x:Key="AppSurfaceHoverBrush" Color="#17171D"/>
+					<SolidColorBrush x:Key="AppBorderBrush" Color="#202027"/>
+					<SolidColorBrush x:Key="AppBorderStrongBrush" Color="#2A2A33"/>
+					<SolidColorBrush x:Key="AppButtonBrush" Color="#121217"/>
+					<SolidColorBrush x:Key="AppButtonHoverBrush" Color="#1B1B22"/>
+					<SolidColorBrush x:Key="AppButtonPressedBrush" Color="#24242C"/>
+					<SolidColorBrush x:Key="TextPrimaryBrush" Color="#F4F4F5"/>
+					<SolidColorBrush x:Key="TextSecondaryBrush" Color="#A1A1AA"/>
+					<SolidColorBrush x:Key="TextMutedBrush" Color="#71717A"/>
+					<SolidColorBrush x:Key="TextDisabledBrush" Color="#52525B"/>
+				</ResourceDictionary>
+			</ResourceDictionary.ThemeDictionaries>
+		</ResourceDictionary>
+	</Application.Resources>
+
+
+	<!-- ============================================================= -->
+	<!-- APPLICATION STYLES                                             -->
+	<!-- ============================================================= -->
+
+	<Application.Styles>
+
+		<!-- ========================================================= -->
+		<!-- FLUENT THEME                                                -->
+		<!-- ========================================================= -->
+
+		<FluentTheme DensityStyle="Compact">
+
+			<FluentTheme.Palettes>
+
+				<ColorPaletteResources x:Key="Dark"
+                                        Accent="#6674F4"
+                                        RegionColor="#050507"
+                                        ErrorText="#E35D68"/>
+
+				<ColorPaletteResources x:Key="Light"
+                                        Accent="#5967E8"
+                                        RegionColor="#F5F5F7"
+                                        ErrorText="#C94D58"/>
+
+			</FluentTheme.Palettes>
+
+		</FluentTheme>
+
+
+		<!-- ========================================================= -->
+		<!-- EXTERNAL STYLES                                             -->
+		<!-- ========================================================= -->
+
+		<StyleInclude Source="avares://NetLpr.Desktop/Assets/Icons.axaml"/>
+
+		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+
+
+		<!-- ========================================================= -->
+		<!-- TYPOGRAPHY                                                  -->
+		<!-- ========================================================= -->
+
+		<Style Selector="TextBlock">
+
+			<Setter Property="FontFamily"
+                    Value="{StaticResource Nunito}"/>
+
+			<Setter Property="Foreground"
+                    Value="{DynamicResource TextPrimaryBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="ContentControl">
+
+			<Setter Property="FontFamily"
+                    Value="{StaticResource Nunito}"/>
+
+		</Style>
+
+
+		<Style Selector="Button">
+
+			<Setter Property="FontFamily"
+                    Value="{StaticResource Nunito}"/>
+
+			<Setter Property="FontSize"
+                    Value="13"/>
+
+			<Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+		</Style>
+
+
+		<Style Selector="TextBox">
+
+			<Setter Property="FontFamily"
+                    Value="{StaticResource Nunito}"/>
+
+		</Style>
+
+
+		<Style Selector="ComboBox">
+
+			<Setter Property="FontFamily"
+                    Value="{StaticResource Nunito}"/>
+
+		</Style>
+
+
+		<Style Selector="ComboBoxItem">
+
+			<Setter Property="FontFamily"
+                    Value="{StaticResource Nunito}"/>
+
+		</Style>
+
+
+		<Style Selector="CheckBox">
+
+			<Setter Property="FontFamily"
+                    Value="{StaticResource Nunito}"/>
+
+		</Style>
+
+
+		<Style Selector="ToggleSwitch">
+
+			<Setter Property="FontFamily"
+                    Value="{StaticResource Nunito}"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- TEXT VARIANTS                                               -->
+		<!-- ========================================================= -->
+
+		<Style Selector="TextBlock.secondary">
+
+			<Setter Property="Foreground"
+                    Value="{DynamicResource TextSecondaryBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="TextBlock.muted">
+
+			<Setter Property="Foreground"
+                    Value="{DynamicResource TextMutedBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="TextBlock.subtle">
+
+			<Setter Property="Foreground"
+                    Value="{DynamicResource TextSubtleBrush}"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- BUTTON BASE                                                 -->
+		<!-- ========================================================= -->
+
+		<Style Selector="Button">
+
+			<Setter Property="MinHeight"
+                    Value="34"/>
+
+			<Setter Property="Padding"
+                    Value="13,7"/>
+
+			<Setter Property="CornerRadius"
+                    Value="7"/>
+
+			<Setter Property="BorderThickness"
+                    Value="1"/>
+
+			<Setter Property="BorderBrush"
+                    Value="{DynamicResource ThemeBorderLowBrush}"/>
+
+			<Setter Property="HorizontalContentAlignment"
+                    Value="Center"/>
+
+			<Setter Property="VerticalContentAlignment"
+                    Value="Center"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- ACCENT BUTTON                                               -->
+		<!-- ========================================================= -->
+
+		<Style Selector="Button.accent">
+
+			<Setter Property="Background"
+                    Value="{StaticResource AccentBrush}"/>
+
+			<Setter Property="Foreground"
+                    Value="White"/>
+
+			<Setter Property="BorderThickness"
+                    Value="0"/>
+
+		</Style>
+
+
+		<Style Selector="Button.accent:pointerover /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{StaticResource AccentHoverBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Button.accent:pressed /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{StaticResource AccentPressedBrush}"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- GHOST BUTTON                                                -->
+		<!-- ========================================================= -->
+
+		<Style Selector="Button.ghost">
+
+			<Setter Property="Background"
+                    Value="Transparent"/>
+
+			<Setter Property="Foreground"
+                    Value="{DynamicResource ThemeForegroundBrush}"/>
+
+			<Setter Property="BorderThickness"
+                    Value="1"/>
+
+			<Setter Property="BorderBrush"
+                    Value="{DynamicResource ThemeBorderLowBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Button.ghost:pointerover /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{DynamicResource ThemeControlHighlightMidBrush}"/>
+
+			<Setter Property="BorderBrush"
+                    Value="{DynamicResource ThemeBorderMidBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Button.ghost:pressed /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{DynamicResource ThemeControlHighlightHighBrush}"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- ICON BUTTON                                                 -->
+		<!-- ========================================================= -->
+
+		<Style Selector="Button.icon">
+
+			<Setter Property="Width"
+                    Value="34"/>
+
+			<Setter Property="Height"
+                    Value="34"/>
+
+			<Setter Property="MinWidth"
+                    Value="34"/>
+
+			<Setter Property="MinHeight"
+                    Value="34"/>
+
+			<Setter Property="Padding"
+                    Value="0"/>
+
+			<Setter Property="CornerRadius"
+                    Value="7"/>
+
+			<Setter Property="Background"
+                    Value="{DynamicResource ThemeBackgroundLowBrush}"/>
+
+			<Setter Property="BorderBrush"
+                    Value="{DynamicResource ThemeBorderLowBrush}"/>
+
+			<Setter Property="BorderThickness"
+                    Value="1"/>
+
+		</Style>
+
+
+		<Style Selector="Button.icon:pointerover /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{DynamicResource ThemeControlHighlightMidBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Button.icon:pressed /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{DynamicResource ThemeControlHighlightHighBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Button.icon.accent">
+
+			<Setter Property="Foreground"
+                    Value="{StaticResource AccentBrush}"/>
+
+		</Style>
+		<Style Selector="Button.icon.accent:pointerover /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="#6674F4"/>
+
+		</Style>
+
+		<Style Selector="Button.icon.danger">
+
+			<Setter Property="Foreground"
+                    Value="{StaticResource DangerBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Button.icon.danger:pointerover /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="#261518"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- SUCCESS BUTTON                                              -->
+		<!-- ========================================================= -->
+
+		<Style Selector="Button.success">
+
+			<Setter Property="Background"
+                    Value="{StaticResource SuccessBrush}"/>
+
+			<Setter Property="Foreground"
+                    Value="White"/>
+
+			<Setter Property="BorderThickness"
+                    Value="0"/>
+
+		</Style>
+
+
+		<Style Selector="Button.success:pointerover /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{StaticResource SuccessHoverBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Button.success:pressed /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{StaticResource SuccessPressedBrush}"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- DANGER BUTTON                                               -->
+		<!-- ========================================================= -->
+
+		<Style Selector="Button.danger">
+
+			<Setter Property="Background"
+                    Value="{StaticResource DangerBrush}"/>
+
+			<Setter Property="Foreground"
+                    Value="White"/>
+
+			<Setter Property="BorderThickness"
+                    Value="0"/>
+
+		</Style>
+
+
+		<Style Selector="Button.danger:pointerover /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{StaticResource DangerHoverBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Button.danger:pressed /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{StaticResource DangerPressedBrush}"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- WARNING BUTTON                                              -->
+		<!-- ========================================================= -->
+
+		<Style Selector="Button.warning">
+
+			<Setter Property="Background"
+                    Value="{StaticResource WarningBrush}"/>
+
+			<Setter Property="Foreground"
+                    Value="White"/>
+
+			<Setter Property="BorderThickness"
+                    Value="0"/>
+
+		</Style>
+
+
+		<Style Selector="Button.warning:pointerover /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{StaticResource WarningHoverBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Button.warning:pressed /template/ ContentPresenter">
+
+			<Setter Property="Background"
+                    Value="{StaticResource WarningPressedBrush}"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- PANELS                                                      -->
+		<!-- ========================================================= -->
+
+		<Style Selector="Border.panel">
+
+			<Setter Property="Background"
+                    Value="{DynamicResource ThemeBackgroundLowBrush}"/>
+
+			<Setter Property="BorderBrush"
+                    Value="{DynamicResource ThemeBorderLowBrush}"/>
+
+			<Setter Property="BorderThickness"
+                    Value="1"/>
+
+			<Setter Property="CornerRadius"
+                    Value="9"/>
+
+		</Style>
+
+
+		<Style Selector="Border.panel.elevated">
+
+			<Setter Property="Background"
+                    Value="{DynamicResource ThemeBackgroundBrush}"/>
+
+			<Setter Property="BorderBrush"
+                    Value="{DynamicResource ThemeBorderLowBrush}"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- TEXTBOX                                                     -->
+		<!-- ========================================================= -->
+
+		<Style Selector="TextBox">
+
+			<Setter Property="FontSize"
+                    Value="13"/>
+
+			<Setter Property="MinHeight"
+                    Value="36"/>
+
+			<Setter Property="Padding"
+                    Value="11,7"/>
+
+			<Setter Property="CornerRadius"
+                    Value="7"/>
+
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- COMBOBOX                                                    -->
+		<!-- ========================================================= -->
+
+		<Style Selector="ComboBox">
+
+			<Setter Property="FontSize"
+                    Value="13"/>
+
+			<Setter Property="MinHeight"
+                    Value="36"/>
+
+			<Setter Property="CornerRadius"
+                    Value="7"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- EXPANDER                                                    -->
+		<!-- ========================================================= -->
+
+		<Style Selector="Expander">
+
+			<Setter Property="Background"
+                    Value="{DynamicResource ThemeBackgroundLowBrush}"/>
+
+			<Setter Property="BorderBrush"
+                    Value="{DynamicResource ThemeBorderLowBrush}"/>
+
+			<Setter Property="BorderThickness"
+                    Value="1"/>
+
+			<Setter Property="CornerRadius"
+                    Value="9"/>
+
+			<Setter Property="Padding"
+                    Value="0"/>
+
+		</Style>
+
+
+		<Style Selector="Expander /template/ ToggleButton#PART_Header">
+
+			<Setter Property="Background"
+                    Value="Transparent"/>
+
+			<Setter Property="Padding"
+                    Value="13,10"/>
+
+			<Setter Property="HorizontalContentAlignment"
+                    Value="Stretch"/>
+
+			<Setter Property="BorderThickness"
+                    Value="0"/>
+
+			<Setter Property="FontFamily"
+                    Value="{StaticResource Nunito}"/>
+
+			<Setter Property="FontSize"
+                    Value="13"/>
+
+			<Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+		</Style>
+
+
+		<Style Selector="Expander /template/ ToggleButton#PART_Header:pointerover">
+
+			<Setter Property="Background"
+                    Value="{DynamicResource ThemeControlHighlightMidBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Expander /template/ ToggleButton#PART_Header:pressed">
+
+			<Setter Property="Background"
+                    Value="{DynamicResource ThemeControlHighlightHighBrush}"/>
+
+		</Style>
+
+
+		<Style Selector="Expander > Border">
+
+			<Setter Property="Padding"
+                    Value="14"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- DATAGRID                                                    -->
+		<!-- ========================================================= -->
+
+		<Style Selector="DataGrid">
+
+			<Setter Property="FontFamily"
+                    Value="{StaticResource Nunito}"/>
+
+			<Setter Property="FontSize"
+                    Value="13"/>
+
+			<Setter Property="RowHeight"
+                    Value="42"/>
+
+			<Setter Property="GridLinesVisibility"
+                    Value="Horizontal"/>
+
+		</Style>
+
+
+		<Style Selector="DataGridColumnHeader">
+
+			<Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+			<Setter Property="FontSize"
+                    Value="12"/>
+
+			<Setter Property="Padding"
+                    Value="12,8"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- CHECKBOX / TOGGLES                                          -->
+		<!-- ========================================================= -->
+
+		<Style Selector="CheckBox">
+
+			<Setter Property="FontSize"
+                    Value="13"/>
+
+		</Style>
+
+
+		<Style Selector="ToggleSwitch">
+
+			<Setter Property="FontSize"
+                    Value="13"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- TABS                                                        -->
+		<!-- ========================================================= -->
+
+		<Style Selector="TabItem">
+
+			<Setter Property="FontSize"
+                    Value="13"/>
+
+			<Setter Property="FontWeight"
+                    Value="SemiBold"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- SCROLLBAR                                                   -->
+		<!-- ========================================================= -->
+
+		<Style Selector="ScrollBar">
+
+			<Setter Property="Opacity"
+                    Value="0.55"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- PROGRESS                                                    -->
+		<!-- ========================================================= -->
+
+		<Style Selector="ProgressBar">
+
+			<Setter Property="MinHeight"
+                    Value="5"/>
+
+		</Style>
+
+
+		<!-- ========================================================= -->
+		<!-- SEPARATOR                                                   -->
+		<!-- ========================================================= -->
+
+		<Style Selector="Separator">
+
+			<Setter Property="Margin"
+                    Value="0,6"/>
+
+			<Setter Property="Opacity"
+                    Value="0.5"/>
+
+		</Style>
+
+	</Application.Styles>
+
+</Application>

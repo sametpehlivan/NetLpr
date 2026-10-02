@@ -1,0 +1,158 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:NetLpr.Desktop.ViewModels"
+             xmlns:views="using:NetLpr.Desktop.Views"
+             xmlns:conv="using:NetLpr.Desktop.Converters"
+             x:Class="NetLpr.Desktop.Views.CameraEditView"
+             x:DataType="vm:CameraEditViewModel"
+			 
+             mc:Ignorable="d">
+
+	<Grid RowDefinitions="*,Auto" Margin="24">
+
+		<Grid Grid.Row="0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="Auto" />
+			</Grid.ColumnDefinitions>
+
+			<Border Grid.Column="0" Background="Black"
+                    Margin="0,0,24,0"
+                    CornerRadius="8"
+			
+                    IsVisible="{Binding IsEditMode}"
+                    MinWidth="500" MinHeight="400"
+                    ClipToBounds="True">
+
+				<Grid>
+					<Image Source="{Binding CurrentFrame}"
+						   Stretch="Uniform"
+						   x:Name="TargetImage"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center"/>
+
+					<Canvas x:Name="RoiCanvas" Background="Transparent"
+							PointerPressed="RoiCanvas_PointerPressed"
+							PointerMoved="RoiCanvas_PointerMoved"
+							PointerReleased="RoiCanvas_PointerReleased"
+							SizeChanged="RoiCanvas_SizeChanged">
+
+						<Rectangle x:Name="RoiRectangle"
+								   Stroke="Red"
+								   StrokeThickness="2"
+								   Fill="#33FF0000"
+								   IsVisible="False"/>
+						<Polyline x:Name="PointsPolyline"
+								  Stroke="Cyan"
+								  StrokeThickness="3"
+								  IsVisible="False" />
+
+						<Polygon x:Name="PointsPolygon"
+								 Stroke="Lime"
+								 StrokeThickness="3"
+								 Fill="#3300FF00"
+								 IsVisible="False" />
+					</Canvas>
+				</Grid>
+			</Border>
+
+			<ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+				<StackPanel  Width="420">
+					<Border CornerRadius="8" Padding="20">
+						<StackPanel >
+							<StackPanel Orientation="Horizontal"  VerticalAlignment="Center">
+								<Border Width="4" Height="18" CornerRadius="2" Background="{DynamicResource SystemControlHighlightAccentBrush}"/>
+								<TextBlock Margin="5 0 0 0" Text="{Binding Labels.RtspConnection}" FontSize="16" FontWeight="SemiBold"/>
+							</StackPanel>
+
+							<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="120,*"  Margin="0,4,0,0">
+								<TextBlock  Grid.Row="0" Grid.Column="0" Text="{Binding Labels.IpAddress}" VerticalAlignment="Center"/>
+								<TextBox Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" Text="{Binding RtspSourceInfo.RtspConnectionInfo.IpAddress}" CornerRadius="6" MinHeight="36"/>
+
+								<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Labels.Port}" VerticalAlignment="Center"/>
+								<TextBox  Margin="0 5 0 0" Grid.Row="1" Grid.Column="1" Text="{Binding RtspSourceInfo.RtspConnectionInfo.Port}" CornerRadius="6" MinHeight="36"/>
+
+								<TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Labels.Username}" VerticalAlignment="Center"/>
+								<TextBox  Margin="0 5 0 0" Grid.Row="2" Grid.Column="1" Text="{Binding RtspSourceInfo.RtspConnectionInfo.Username}" CornerRadius="6" MinHeight="36"/>
+
+								<TextBlock Grid.Row="3" Grid.Column="0" Text="{Binding Labels.Password}" VerticalAlignment="Center"/>
+								<TextBox  Margin="0 5 0 0" Grid.Row="3" Grid.Column="1" PasswordChar="●" Text="{Binding RtspSourceInfo.RtspConnectionInfo.Password}" CornerRadius="6" MinHeight="36"/>
+
+								<TextBlock Grid.Row="4" Grid.Column="0" Text="{Binding Labels.PathAndQuery}" VerticalAlignment="Center"/>
+								<TextBox  Margin="0 5 0 0" Grid.Row="4" Grid.Column="1" Text="{Binding RtspSourceInfo.RtspConnectionInfo.PathAndQuery}" CornerRadius="6" MinHeight="36"/>
+
+								<TextBlock Margin="0 5 0 0" Grid.Row="5" Grid.Column="0" Text="{Binding Labels.TransportType}" VerticalAlignment="Center"/>
+								<ComboBox  Margin="0 5 0 0" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Stretch" ItemsSource="{Binding RtspSourceInfo.RtspTransportTypes}" SelectedItem="{Binding RtspSourceInfo.RtspConnectionInfo.TransportType}" CornerRadius="6" MinHeight="36"/>
+								
+								<TextBlock Margin="0 5 0 0" Grid.Row="6" Grid.Column="0" Text="{Binding Labels.AnalyseType}" VerticalAlignment="Center" FontWeight="Medium"/>
+								<ComboBox  Margin="0 5 0 0" Grid.Row="6" Grid.Column="1"
+										  IsEnabled="{Binding !IsEditMode}"
+										  HorizontalAlignment="Stretch"
+										  ItemsSource="{Binding RtspSourceInfo.StreamAnalysesTypes}"
+										  SelectedItem="{Binding RtspSourceInfo.StreamAnalysesInfo.AnalysesType}"
+										  CornerRadius="6" MinHeight="36"/>
+								<TextBlock Margin="0 5 0 0"
+										   Grid.Row="7"
+										   Grid.Column="0"
+										   Text=""
+										   VerticalAlignment="Center"
+										   FontWeight="Medium"/>
+
+								<ToggleButton Content="{Binding Labels.IsAnalysesOpen}" Margin="0 5 0 0"
+											  Grid.Row="7"
+											  HorizontalAlignment="Stretch"
+											  HorizontalContentAlignment="Center"
+											  IsVisible="{Binding IsEditMode}"
+											  CornerRadius="6"
+											  BorderThickness="1"
+											  BorderBrush="{DynamicResource ThemeAccentBrush}"
+											  Grid.Column="1"
+											  IsChecked="{Binding RtspSourceInfo.StreamAnalysesInfo.IsAnalysesOpen, Mode=TwoWay}" />
+							</Grid>
+						</StackPanel>
+					</Border>
+					<Border CornerRadius="8" Padding="20" IsVisible="{Binding IsEditMode}">
+						<StackPanel >
+							<StackPanel Orientation="Horizontal"  VerticalAlignment="Center">
+								<Border Width="4" Height="18" CornerRadius="2" Background="{DynamicResource SystemControlHighlightAccentBrush}"/>
+								<TextBlock Margin="5 0 0 0" Text="{Binding Labels.TargetSize}" FontSize="16" FontWeight="SemiBold"/>
+							</StackPanel>
+
+							<Grid ColumnDefinitions="120,*" RowDefinitions="Auto,Auto" Margin="0,4,0,0">
+								<TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Labels.Width}" VerticalAlignment="Center" FontWeight="Medium"/>
+								<TextBox IsEnabled="False"  Margin="0 5 0 0" Grid.Row="0" Grid.Column="1" Text="{Binding RtspSourceInfo.FrameTransformSize.Width}" CornerRadius="6" MinHeight="36"/>
+
+								<TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Labels.Height}" VerticalAlignment="Center" FontWeight="Medium"/>
+								<TextBox IsEnabled="False"  Margin="0 5 0 0" Grid.Row="1" Grid.Column="1" Text="{Binding RtspSourceInfo.FrameTransformSize.Height}" CornerRadius="6" MinHeight="36"/>
+							</Grid>
+
+						</StackPanel>
+					</Border>
+			
+
+				</StackPanel>
+			</ScrollViewer>
+		</Grid>
+
+		<Border Grid.Row="1" Padding="0,24,0,0">
+			<StackPanel  HorizontalAlignment="Right" Orientation="Horizontal">
+
+				<TextBlock Foreground="#E53935" FontSize="13" TextWrapping="Wrap" VerticalAlignment="Center"
+                           Text="{Binding Message}" IsVisible="{Binding Message, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+				<Button Content="{Binding Labels.SelectArea}"
+						Command="{Binding EnablePointSelectionCommand}"
+						IsVisible="{Binding IsEditMode}"
+						MinHeight="36" MinWidth="100" HorizontalContentAlignment="Center"/>
+				<Button Content="{Binding Labels.SelectRoi}"
+                        Command="{Binding EnableRoiSelectionCommand}"
+                        IsVisible="{Binding IsEditMode}"
+                        MinHeight="36" MinWidth="100" HorizontalContentAlignment="Center"/>
+
+				<Button Classes="success" Command="{Binding SaveCommand}" Content="{Binding Labels.Save}"
+                        MinHeight="36" MinWidth="100" HorizontalContentAlignment="Center"/>
+			</StackPanel>
+		</Border>
+	</Grid>
+</UserControl>

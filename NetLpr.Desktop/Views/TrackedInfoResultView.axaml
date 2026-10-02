@@ -1,0 +1,247 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:NetLpr.Desktop.ViewModels"
+             x:Class="NetLpr.Desktop.Views.TrackedInfoResultView"
+             x:DataType="vm:TrackedInfoResultViewModel"
+             mc:Ignorable="d">
+
+	<Grid>
+
+		<Border IsVisible="{Binding IsRow}"
+                Margin="8"
+                Padding="16"
+                Background="{DynamicResource AppSurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource AppBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="12">
+			<Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+	
+				<Border Grid.Row="0"
+                        Margin="0,0,0,14"
+                        Padding="12,10"
+                        Background="{DynamicResource AppSurfaceBrush}"
+                        BorderBrush="{DynamicResource AppBorderStrongBrush}"
+                        BorderThickness="1"
+                        CornerRadius="9">
+					<Grid ColumnDefinitions="*,Auto">
+						<StackPanel Spacing="3">
+							<TextBlock Text="{Binding Labels.ResultPlate}"
+                                       FontSize="10"
+                                       Foreground="{DynamicResource TextMutedBrush}"/>
+							<TextBlock Text="{Binding ResultPlate}"
+                                       FontSize="23"
+                                       FontWeight="Bold"
+                                       LetterSpacing="1.2"
+                                       Foreground="{DynamicResource TextPrimaryBrush}"/>
+						</StackPanel>
+						<Border Grid.Column="1"
+                                Width="7"
+                                Height="7"
+                                Margin="10,0,2,0"
+                                VerticalAlignment="Center"
+                                CornerRadius="4"
+                                Background="{StaticResource AccentBrush}"/>
+					</Grid>
+				</Border>
+				<Grid Grid.Row="1"
+                      ColumnDefinitions="*,Auto"
+                      Margin="0,5">
+					<TextBlock Text="{Binding Labels.ResultIpAddress}"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+					<TextBlock Grid.Column="1"
+                               Text="{Binding ResultIpAddress}"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+				</Grid>
+				<Grid Grid.Row="2"
+                      ColumnDefinitions="*,Auto"
+                      Margin="0,5">
+					<TextBlock Text="{Binding Labels.ResultRegion}"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+					<TextBlock Grid.Column="1"
+                               Text="{Binding ResultRegion}"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+
+				</Grid>
+				<Grid Grid.Row="3"
+                      ColumnDefinitions="*,Auto"
+                      Margin="0,5">
+					<TextBlock Text="{Binding Labels.ResultDate}"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+					<TextBlock Grid.Column="1"
+                               Text="{Binding ResultDate}"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+
+				</Grid>
+				<Grid Grid.Row="4"
+                      ColumnDefinitions="*,Auto"
+                      Margin="0,5">
+					<TextBlock Text="{Binding Labels.ResultCarType}"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+
+					<TextBlock Grid.Column="1"
+                               Text="{Binding ResultCarType}"
+                               FontSize="13"
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+				</Grid>
+				<Grid Grid.Row="5"
+                      ColumnDefinitions="*,Auto"
+                      Margin="0,5">
+					<TextBlock Text="{Binding Labels.ResultDirection}"
+                               FontSize="12"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+
+					<Border IsVisible="{Binding !IsUp}" 
+							HorizontalAlignment="Stretch" 
+							VerticalAlignment="Top" 
+							Margin="10" 
+							Padding="8,4" 
+							CornerRadius="6" 
+							Background="{DynamicResource AppSurfaceRaisedBrush}" 
+							BorderBrush="{DynamicResource AppBorderBrush}" 
+							Grid.Column="1"
+							BorderThickness="1">
+						<TextBlock Text="{Binding ResultDirection}" 
+								   FontSize="13" 
+								   FontWeight="SemiBold" 
+								   Foreground="{StaticResource AccentBrush}"/>
+					</Border>
+					<Border IsVisible="{Binding IsUp}" 
+							HorizontalAlignment="Stretch" 
+							VerticalAlignment="Top" 
+							Margin="10" 
+							Padding="8,4" 
+							CornerRadius="6" 
+							Background="{DynamicResource ErrorBadgeBackgroundBrush}" 
+							BorderBrush="{DynamicResource AppBorderBrush}" 
+							Grid.Column="1"
+							BorderThickness="1">
+						<TextBlock Text="{Binding ResultDirection}" FontSize="12" FontWeight="Bold" Foreground="{StaticResource ErrorBadgeForegroundBrush}"/>
+					</Border>
+				</Grid>
+			</Grid>
+		</Border>
+		<Border IsVisible="{Binding !IsRow}"
+                Margin="4"
+                Padding="10,12"
+                Background="{DynamicResource AppSurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource AppBorderBrush}"
+                BorderThickness="1"
+                CornerRadius="11">
+			<Grid ColumnDefinitions="1.1*,1.3*,1*,1.2*,1*,1*,Auto"
+                  >
+				<StackPanel Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            Spacing="3">
+					<TextBlock Text="{Binding Labels.ResultIpAddress}"
+                               FontSize="9"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+
+					<TextBlock Text="{Binding ResultIpAddress}"
+                               FontSize="12"
+                               FontWeight="SemiBold"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+
+				</StackPanel>
+				<StackPanel Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            Spacing="3">
+					<TextBlock Text="{Binding Labels.ResultPlate}"
+                               FontSize="9"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+
+					<TextBlock Text="{Binding ResultPlate}"
+                               FontSize="15"
+                               FontWeight="Bold"
+                               LetterSpacing="0.7"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextPrimaryBrush}"/>
+				</StackPanel>
+				<StackPanel Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            Spacing="3">
+
+					<TextBlock Text="{Binding Labels.ResultRegion}"
+                               FontSize="9"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+
+					<TextBlock Text="{Binding ResultRegion}"
+                               FontSize="12"
+                               FontWeight="SemiBold"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+				</StackPanel>
+				<StackPanel Grid.Column="3"
+                            HorizontalAlignment="Center"
+                            Spacing="3">
+					<TextBlock Text="{Binding Labels.ResultDate}"
+                               FontSize="9"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+					<TextBlock Text="{Binding ResultDate}"
+                               FontSize="12"
+                               FontWeight="SemiBold"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+
+				</StackPanel>
+				<StackPanel Grid.Column="4"
+                            HorizontalAlignment="Center"
+                            Spacing="3">
+					<TextBlock Text="{Binding Labels.ResultCarType}"
+                               FontSize="9"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+					<TextBlock Text="{Binding ResultCarType}"
+                               FontSize="12"
+                               FontWeight="SemiBold"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextSecondaryBrush}"/>
+				</StackPanel>
+                <StackPanel Grid.Column="5"
+                            HorizontalAlignment="Center"
+                            Spacing="3">
+					<TextBlock Text="{Binding Labels.ResultDirection}"
+                               FontSize="9"
+                               HorizontalAlignment="Center"
+                               Foreground="{DynamicResource TextMutedBrush}"/>
+	                <Border IsVisible="{Binding !IsUp}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10" Padding="8,4" CornerRadius="6" Background="{DynamicResource AppSurfaceRaisedBrush}" BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1">
+		                <TextBlock Text="{Binding ResultDirection}"  FontSize="12" FontWeight="Bold" Foreground="{StaticResource AccentBrush}"/>
+	                </Border>
+					<Border IsVisible="{Binding IsUp}" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10" Padding="8,4" CornerRadius="6" Background="{DynamicResource ErrorBadgeBackgroundBrush}" BorderBrush="{DynamicResource AppBorderBrush}" BorderThickness="1">
+						<TextBlock Text="{Binding ResultDirection}" FontSize="12" FontWeight="Bold" Foreground="{StaticResource ErrorBadgeForegroundBrush}"/>
+					</Border>
+				</StackPanel>
+				<Border Grid.Column="6"
+                        Width="72"
+                        Height="46"
+                        Margin="8,0,0,0"
+                        ClipToBounds="True"
+                        CornerRadius="7"
+                        Background="{DynamicResource AppSurfaceBrush}"
+                        BorderBrush="{DynamicResource AppBorderBrush}"
+                        BorderThickness="1">
+
+					<Image Source="{Binding Image}"
+                           Stretch="Uniform"/>
+				</Border>
+			</Grid>
+		</Border>
+	</Grid>
+</UserControl>

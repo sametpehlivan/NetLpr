@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetLpr.Persistence.Sqlite\NetLpr.Persistence.Sqlite.csproj" />
+    <ProjectReference Include="..\NetLpr.Core\NetLpr.Core.csproj" />
+    <ProjectReference Include="..\NetLpr.ImageProcessingCv\NetLpr.ImageProcessingCv.csproj" />
+    <ProjectReference Include="..\NetLpr.InferenceOR\NetLpr.InferenceOR.csproj" />
+    <ProjectReference Include="..\NetLpr.InferenceOV\NetLpr.InferenceOV.csproj" />
+    <ProjectReference Include="..\NetLpr.Desktop\NetLpr.Desktop.csproj" />
+    <ProjectReference Include="..\NetLpr.Localization\NetLpr.Localization.csproj" />
+    <ProjectReference Include="..\NetLpr.Logs\NetLpr.Logs.csproj" />
+    <ProjectReference Include="..\NetLpr.RealTimeStream.Ffmpeg\NetLpr.RealTimeStream.Ffmpeg.csproj" />
+	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="inference-models\ld\ld_n_fp16_384x384.onnx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="inference-models\ocr\ocr-2_n_int8_64x128.onnx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
