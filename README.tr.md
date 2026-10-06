@@ -62,28 +62,35 @@ NetLpr/
 
 # 📸 Ekran Görüntüleri
 
-## 🖥️ Ana Panel
+### 🖥️ Ana Panel
 
 Canlı kamera akışları, tespit edilen plakalar, sistem istatistikleri ve anlık işlem durumları.
 
-![Ana Panel](./images/1.png)
-
----
-
-## 🎥 Kamera Yapılandırması & ROI
+### 🎥 Kamera Yapılandırması & ROI
 
 RTSP bağlantılarını yapılandırabilir ve kamera görüntüsü üzerinde **Region of Interest (ROI)** bölgelerini etkileşimli olarak belirleyebilirsiniz.
 
-![Kamera Yapılandırması](./images/2.png)
-
----
-
-## 📊 Tespit Geçmişi
+### 📊 Tespit Geçmişi
 
 Tespit edilen araç ve plakalar aranabilir ve filtrelenebilir bir geçmiş ekranı üzerinden incelenebilir.
 
-![AI Ayarları](./images/3.png)
-
+<table>
+  <tr>
+    <td><img src="images/1.png" width="100%"></td>
+    <td><img src="images/2.png" width="100%"></td>
+    <td><img src="images/3.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="images/4.png" width="100%"></td>
+    <td><img src="images/5.png" width="100%"></td>
+    <td><img src="images/6.png" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="images/7.png" width="100%"></td>
+    <td><img src="images/8.png" width="100%"></td>
+    <td><img src="images/9.png" width="100%"></td>
+  </tr>
+</table>
 ---
 
 # 🧠 AI Pipeline
